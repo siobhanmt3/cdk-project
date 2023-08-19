@@ -2,9 +2,12 @@
 name: Deploy
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types:
+      - published
+
+env:
+  AWS_REGION: us-west-2
 
 jobs:
   Deploy:
@@ -14,7 +17,48 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Echo Hello
-        run: |
-          echo hello world
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
 
+      - name: Login to AWS ECR
+        id: login_ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.node-version'
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11' 
+
+      - name: Get Latest Release
+        uses: WyriHaximus/github-action-get-previous-tag@v1
+        id: latest_tag
+        with:
+          fallback: 0.0.1
+
+      - name: Build, tag, and push API image
+        id: build_image
+        env:
+          ECR_REGISTRY: ${{ steps.login_ecr.outputs.registry }}
+          ECR_REPOSITORY: demo-siobhan
+          IMAGE_TAG: latest
+        working-directory: app
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+      - name: Deploy
+        run: |
+          npm install -g aws-cdk
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          cdk deploy --context docker_tag=${{ steps.latest_tag.outputs.tag }} --context mongodb_uri='${{ secrets.MONGODB_URI }}' --require-approval never
