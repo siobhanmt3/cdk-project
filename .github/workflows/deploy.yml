@@ -2,9 +2,9 @@
 name: Deploy
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types:
+      - published
 
 env:
   AWS_REGION: us-west-2
