@@ -25,6 +25,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Login to AWS ECR
+        id: login_ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -35,9 +39,21 @@ jobs:
         with:
           python-version: '3.11.4' 
 
+      - name: Build, tag, and push API image
+        id: build_image
+        env:
+          ECR_REGISTRY: ${{ steps.login_ecr.outputs.registry }}
+          ECR_REPOSITORY: demo-fastapi-mongodb
+          IMAGE_TAG: latest
+        working-directory: app
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          
       - name: Deploy
         run: |
           npm install -g aws-cdk
           pip install --upgrade pip
           pip install -r requirements.txt
-          cdk synth
+          cdk deploy
