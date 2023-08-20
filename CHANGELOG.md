@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/siobhanmt3/cdk-project/compare/v1.0.0...v1.0.1) (2023-08-20)
+
+
+### Bug Fixes
+
+* correct healthchech msg ([28fb9a6](https://github.com/siobhanmt3/cdk-project/commit/28fb9a634c3eedd888808d9c71881e39a2552a0d))
+* correct healthcheck msg ([501fd8c](https://github.com/siobhanmt3/cdk-project/commit/501fd8c5336d43d1cc72e2ed0e25ec6b3d72f8fa))
+
 # 1.0.0 (2023-08-20)
 
 
