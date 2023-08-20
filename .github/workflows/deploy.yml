@@ -6,6 +6,9 @@ on:
     branches:
       - main
 
+env:
+  AWS_REGION: us-west-2
+
 jobs:
   Deploy:
     runs-on: ubuntu-latest
@@ -14,6 +17,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Echo Hello
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.node-version'
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11.4' 
+
+      - name: Deploy
         run: |
-          echo hello world
+          npm install -g aws-cdk
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          cdk synth
