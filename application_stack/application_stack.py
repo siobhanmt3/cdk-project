@@ -18,7 +18,7 @@ class ApplicationStack(Stack):
         super().__init__(scope, construct_id, **kwargs)
         
         docker_tag = self.node.try_get_context("docker_tag")
-        mongodb_uri = self.node.try_get_context("docker_tag")
+        mongodb_uri = self.node.try_get_context("mongodb_uri")
 
         vpc = ec2.Vpc(
             self,

@@ -23,8 +23,7 @@ app.add_exception_handler(NotFoundRecord, not_found_exception_handler)
 app.add_exception_handler(Unauthorized, unauthorized_exception_handler)
 app.add_exception_handler(Forbidden, forbidden_exception_handler)
 
+
 @app.get("/healthcheck")
 async def healthcheck():
-    return{
-        "healthcheck" : "Ok :)"
-    }
+    return {"healthcheck": "Ok :)"}
