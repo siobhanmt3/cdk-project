@@ -1,0 +1,19 @@
+---
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Echo Hello
+        run: |
+          echo hello world
