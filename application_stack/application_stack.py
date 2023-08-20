@@ -41,7 +41,7 @@ class ApplicationStack(Stack):
             cpu=512,
             desired_count=1,
             task_image_options=ecs_patterns.ApplicationLoadBalancedTaskImageOptions(
-                image=ecs.ContainerImage.from_registry("nginx:1.25.1"),
+                image=ecs.ContainerImage.from_registry("nginx:1.24.0"),
                 task_role=ecs_task_role,
             ),
         )
