@@ -32,7 +32,7 @@ class ApplicationStack(Stack):
             assumed_by=iam.ServicePrincipal("ecs-tasks.amazonaws.com"),
             description="Grant access to multiple AWS services",
         )
-
+        #Cambiar version nginx
         fargate_cluster = ecs_patterns.ApplicationLoadBalancedFargateService(
             self,
             "EcsFargateService",
