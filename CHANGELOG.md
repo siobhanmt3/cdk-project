@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/siobhanmt3/cdk-project/compare/v1.0.7...v1.0.8) (2023-08-20)
+
+
+### Bug Fixes
+
+* enviroment variable ([54b5fa0](https://github.com/siobhanmt3/cdk-project/commit/54b5fa0f67aa55f471d306a0d5b6c87be7f741eb))
+
 ## [1.0.7](https://github.com/siobhanmt3/cdk-project/compare/v1.0.6...v1.0.7) (2023-08-20)
 
 
