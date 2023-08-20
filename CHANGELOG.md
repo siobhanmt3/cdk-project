@@ -1,3 +1,11 @@
+## [1.0.12](https://github.com/siobhanmt3/cdk-project/compare/v1.0.11...v1.0.12) (2023-08-20)
+
+
+### Bug Fixes
+
+* database uri ([c01993a](https://github.com/siobhanmt3/cdk-project/commit/c01993a38bd0a68961b9f185e38918e973185e49))
+* database uri ([f7b28ca](https://github.com/siobhanmt3/cdk-project/commit/f7b28caca6c9f0ec6b7009956d6982c7693f7302))
+
 ## [1.0.11](https://github.com/siobhanmt3/cdk-project/compare/v1.0.10...v1.0.11) (2023-08-20)
 
 
