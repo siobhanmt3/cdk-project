@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/siobhanmt3/cdk-project/compare/v1.0.8...v1.0.9) (2023-08-20)
+
+
+### Bug Fixes
+
+* database variable ([475fb48](https://github.com/siobhanmt3/cdk-project/commit/475fb48ff78798de2d71cce386891ff5bf4bbffb))
+
 ## [1.0.8](https://github.com/siobhanmt3/cdk-project/compare/v1.0.7...v1.0.8) (2023-08-20)
 
 
