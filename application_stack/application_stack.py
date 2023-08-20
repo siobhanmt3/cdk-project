@@ -1,3 +1,5 @@
+import time
+
 from aws_cdk import (
     # Duration,
     Stack,
@@ -15,6 +17,8 @@ class ApplicationStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
         
+        docker_tag = self.node.try_get_context("docker_tag")
+
         vpc = ec2.Vpc(
             self,
             "EcsClusterVpc",
@@ -42,7 +46,7 @@ class ApplicationStack(Stack):
 
         ecr_image = ecs.ContainerImage.from_ecr_repository(
             ecr_repository,
-            "latest",
+            docker_tag,
         )
         
         fargate_cluster = ecs_patterns.ApplicationLoadBalancedFargateService(
