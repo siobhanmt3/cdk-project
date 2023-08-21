@@ -1,3 +1,10 @@
+## [1.0.22](https://github.com/siobhanmt3/cdk-project/compare/v1.0.21...v1.0.22) (2023-08-21)
+
+
+### Bug Fixes
+
+* variable dbn ([81f759a](https://github.com/siobhanmt3/cdk-project/commit/81f759a70c8387854486703300649e97090f44f5))
+
 ## [1.0.21](https://github.com/siobhanmt3/cdk-project/compare/v1.0.20...v1.0.21) (2023-08-21)
 
 
