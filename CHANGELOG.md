@@ -1,3 +1,10 @@
+## [1.0.21](https://github.com/siobhanmt3/cdk-project/compare/v1.0.20...v1.0.21) (2023-08-21)
+
+
+### Bug Fixes
+
+* something ([ea59a81](https://github.com/siobhanmt3/cdk-project/commit/ea59a81a9a2abc97bb7450fcd027c191a27c1721))
+
 ## [1.0.20](https://github.com/siobhanmt3/cdk-project/compare/v1.0.19...v1.0.20) (2023-08-21)
 
 
