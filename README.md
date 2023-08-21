@@ -1,51 +1,84 @@
 
-# Welcome to your CDK Python project!
+# Bienvenido a Proyecto con CDK c:
 
-This is a blank project for CDK development with Python.
+Este es un pequeño manual para ejecutar diferentes comandos necesiarios al momento de realizar un deploy
+al servucio de aws.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
-
-This project is set up like a standard Python project.  The initialization
-process also creates a virtualenv within this project, stored under the `.venv`
-directory.  To create the virtualenv it assumes that there is a `python3`
-(or `python` for Windows) executable in your path with access to the `venv`
-package. If for any reason the automatic creation of the virtualenv fails,
-you can create the virtualenv manually.
-
-To manually create a virtualenv on MacOS and Linux:
+Verificar que tenemos instalado node.
 
 ```
-$ python -m venv .venv
+node -v
 ```
 
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
+Verificar que tenemos instalado python.
 
 ```
-$ source .venv/bin/activate
+python --version
 ```
 
-If you are a Windows platform, you would activate the virtualenv like this:
+Instalar cdk, libreria nativa de AWS te creara un entorno virtual asi que debes de activarlo,
+Nota: Crear una carpeta interna si no te deja correr el comando, además puedes eliminar tests ya que no veremos nada de eso.
 
 ```
-% .venv\Scripts\activate.bat
+cdk init app --language python
 ```
 
-Once the virtualenv is activated, you can install the required dependencies.
+Nota: Después de ejecutar este comando todo lo genereado lo dejé en la carpeta raíz
+
+Comando para crear un entorno virtual: No es necesario ejecutar ya que el cdk init crea tu entorno virtual.
+En caso de necesitar generarlo el comando que debes de utilizar es el siguiente.
 
 ```
-$ pip install -r requirements.txt
+python -m venv .venv
 ```
 
-At this point you can now synthesize the CloudFormation template for this code.
+Activador entorno virtual para windows - Ejecutar desde la carpeta raiz
 
 ```
-$ cdk synth
+.venv\Scripts\activate.bat
 ```
 
-To add additional dependencies, for example other CDK libraries, just add
-them to your `setup.py` file and rerun the `pip install -r requirements.txt`
-command.
+Activador para otros OS
+
+```
+source .venv/bin/activate
+```
+
+Ejecutamos este comando para instalar los requerimientos
+
+```
+pip install -r .\requirements.txt
+```
+
+Puedes generar un bucket en tu ApplicationStack para comprobar que el deploy puede realizarse correctamente 
+recuerda importar aws_s3 as s3
+bucket = s3.Bucket(self, "MyFirstBucket")
+
+Confirma que funcione:
+
+```
+aws sts get-caller-identity
+```
+
+Cloudformation stacks, crear nuestra pila,
+
+```
+cdk bootstrap aws://**********/us-west-2
+```
+
+## PARA CREAR UN REPOSITORIO DE DOCKER EN AWS
+Ir a Eastic Container Regestry (ECR), crear un contenedor "nombre-contenedor" y toda la configuracion defautl
+
+
+## Donde encontrar los recursos que generas 
+CloudFormation - pilas: muestra progrso de actualizacion 
+S3 - buckets 
+ECS - cluster generado con la etiqueta correspondiente - definciiones de tareas para ver version 
+ecs tambien crea una task definition al hacer una actualizacion, en este caso v2 
+VPC - virtual private cloud 
+EC2 - balanceadores de carga - el dns, ya funciona 
+ECR - contenedor llamado "nombre-contenedor"
+
 
 ## Useful commands
 
@@ -55,4 +88,4 @@ command.
  * `cdk diff`        compare deployed stack with current state
  * `cdk docs`        open CDK documentation
 
-Enjoy!
+c:
