@@ -78,7 +78,7 @@ async def update_product(
     await database.products.update_one({"_id": product_id}, {"$set": updated_product})
 
     return JSONResponse(
-        content={"message": f"Product {product_id} updated successfully"},
+        content={"message": f"Product {product_id} updated successfully by "},
         status_code=200,
     )
 
